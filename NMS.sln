@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMS", "NMS.csproj", "{F1E98E56-E95B-4FBD-96FD-BCA611284790}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMS.Tests", "..\NMS.Tests\NMS.Tests.csproj", "{3A5A47C0-2AE7-4CE9-B0BC-CA5C4FAF6EDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1E98E56-E95B-4FBD-96FD-BCA611284790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E98E56-E95B-4FBD-96FD-BCA611284790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E98E56-E95B-4FBD-96FD-BCA611284790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E98E56-E95B-4FBD-96FD-BCA611284790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A5A47C0-2AE7-4CE9-B0BC-CA5C4FAF6EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5A47C0-2AE7-4CE9-B0BC-CA5C4FAF6EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5A47C0-2AE7-4CE9-B0BC-CA5C4FAF6EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5A47C0-2AE7-4CE9-B0BC-CA5C4FAF6EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E2EB917-313E-4E3D-831A-E01677C30C6E}
+	EndGlobalSection
+EndGlobal

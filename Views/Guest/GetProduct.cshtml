@@ -1,0 +1,39 @@
+﻿@model IEnumerable <NMS.Models.Product>
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_LayoutPageGuest.cshtml";
+}
+
+<h2>Product List</h2>
+<div class="container-fluid">
+    @if (Model.Count()>0)
+        {
+    <div class="row">
+
+
+
+
+        @foreach (var product in Model)
+        {
+        <div class="col col-sm-4">
+            <div class="card">
+                <div class="card-img-top">@product.Images</div>
+                <div class="card-header bg-primary "><h1>@product.productName</h1></div>
+                <div class="card-body">
+                    
+                    <div class="align-content-center bg-success">
+                        Status:@product.productStatus
+                    </div>
+                  
+                </div>
+                <div class="card-footer bg-warning btn">@Html.ActionLink(product.productName,"ProductDetails",new {Controller="Guest",id=product.productId })</div>
+
+            </div>
+
+        </div>
+        }
+
+    </div>
+    }
+</div>
+

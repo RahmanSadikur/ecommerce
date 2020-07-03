@@ -1,0 +1,36 @@
+﻿@model  IEnumerable<NMS.Models.Company>
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_LayoutPageGuest.cshtml";
+}
+
+
+
+    <div class="container-fluid">
+       
+            <div > <h2 >About us</h2></div>
+            
+        
+            @if (Model.Count() > 0)
+            {
+                <div class="card">
+                    <div class="card-img-top">@Model.FirstOrDefault().companyLogo</div>
+                    <div class="card-header bg-primary "><h1>@Model.FirstOrDefault().companyName</h1></div>
+                    <div class="card-body">
+                        <div class="align-content-center">
+                            Phone numbeer:@Model.FirstOrDefault().companyPhone
+                        </div>
+                        <div class="align-content-center">
+                            Email:@Model.FirstOrDefault().companyEmail
+                        </div>
+                        <div class="align-content-center bg-info">
+                            <h4> @Model.FirstOrDefault().companyDescription</h4> 
+                        </div>
+                    </div>
+                    <div class="card-footer bg-success"><h3>@Model.FirstOrDefault().companyAddress</h3></div>
+
+                </div>
+            }
+
+        </div>
+    
