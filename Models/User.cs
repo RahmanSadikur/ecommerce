@@ -12,19 +12,24 @@ namespace NMS.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int userId { get; set; }
+        [Required]
         public string userName { get; set; }
 
         public string email { get; set; }
+        [Required]
         public string phone { get; set; }
+        [Required]
         public string address { get; set; }
+        [Required]
         public string designation { get; set; }
         public string description { get; set; }
+        [Required]
         public int userTypeId { get; set; }
         
         [ForeignKey("userTypeId")]
         public UserCredential UserCredentials { get; set; }
         
-        public ICollection<Favourite> Favourites { get; set; }
+       
 
     }
 }

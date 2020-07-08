@@ -12,16 +12,24 @@ namespace NMS.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        
         public int productId { get; set; }
+        [Required]
         public string productName { get; set; }
         public string productDescription { get; set; }
-        public double productPrice { get; set; } 
+        public double productPrice { get; set; }
+        [Required]
         public string productStatus { get; set; }
+        [Required]
         public string contact { get; set; }
+        [Required]
         public int subCategoryId { get; set; }
+        public bool isPinnedProduct { get; set; }
+        public bool isFavourite { get; set; }
+        public string color{ get; set; }
         [ForeignKey("subCategoryId")]
         public SubCategory SubCategorys { get; set; }
         public ICollection<Image> Images { get; set; }
-        public ICollection<Favourite> Favourites { get; set; }
+        
     }
 }

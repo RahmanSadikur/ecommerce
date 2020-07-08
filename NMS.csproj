@@ -261,6 +261,10 @@
     <Compile Include="Migrations\202006251025594_indentity.designer.cs">
       <DependentUpon>202006251025594_indentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007041801101_removefavtable.cs" />
+    <Compile Include="Migrations\202007041801101_removefavtable.designer.cs">
+      <DependentUpon>202007041801101_removefavtable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
@@ -271,6 +275,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserCredential.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\ProductImageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +295,9 @@
     <Content Include="Views\Nav\NavMenu.cshtml" />
     <Content Include="Views\Guest\GetProduct.cshtml" />
     <Content Include="Views\Guest\Index.cshtml" />
+    <Content Include="Views\Nav\Footer.cshtml" />
+    <Content Include="Views\Nav\MenuSideBar.cshtml" />
+    <Content Include="Views\Nav\GetDetail.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -366,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006251025594_indentity.resx">
       <DependentUpon>202006251025594_indentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041801101_removefavtable.resx">
+      <DependentUpon>202007041801101_removefavtable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

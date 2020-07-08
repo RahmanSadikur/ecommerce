@@ -1,0 +1,109 @@
+﻿@model IEnumerable<NMS.Models.Company>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+  
+
+
+
+        <div class="card">
+            <div class="card-body">
+
+                @if (Model.Count() > 0)
+                {
+                    <div class="row">
+                    
+                                <div class="col col-sm-4"></div>
+                                <div class="col col-sm-4">
+
+                                    @Model.FirstOrDefault().companyName
+
+
+                                </div>
+                                <div class="col col-sm-4"></div>
+                            </div>
+
+                
+                    <div class="row">
+
+
+
+                        <div class="col col-sm-3"></div>
+                        <div class="col col-sm-6"><p>@Model.FirstOrDefault().companyDescription</p></div>
+                        <div class="col col-sm-3"></div>
+
+                        
+
+
+
+                    </div>
+
+                    <div class="row">
+                       
+                                <div class="col col-sm-4">
+                                    <i class="fa fa-envelope" aria-hidden="true" style="font-size: 36px;"></i>
+                                     @Model.FirstOrDefault().companyEmail
+                                </div>
+                                <div class="col col-sm-4">
+
+                                    <i class="fa fa-phone" aria-hidden="true" style="font-size:36px;"></i>
+                                     @Model.FirstOrDefault().companyPhone
+
+
+                                </div>
+                                <div class="col col-sm-4">
+                                    <a href="http://www.facebook.com/progotinursery"><i class="fa fa-facebook-square" style="font-size:36px;color:royalblue"></i>/progotinursey</a>
+                                </div>
+                            </div>
+
+      
+                    <div class="row mt-2 pt-2">
+                        <div class="col col-sm-4">
+                            <i class="fa fa-map-marker" aria-hidden="true" style="font-size:36px;"></i>@Model.FirstOrDefault().companyAddress
+                        </div>
+
+                        <div class="col col-sm-4"></div>
+
+
+                        <div class="col col-sm-4"></div>
+                    </div>
+                    <div class="row">
+                       <div id="googleMap" style="height:180px;width:100%;"></div>
+                    </div>
+
+        
+                    <div class="row">
+                       
+
+                       
+                            <div class="col col-sm-4"><p class="align-content-center">&copy; @DateTime.Now.Year -Semicolon</p></div>
+                            <div class="col col-sm-4"></div>
+                            <div class="col col-sm-4"></div>
+      
+                    </div>
+                    
+
+
+
+
+
+
+                }
+            </div>
+        </div>
+
+  
+    <script>
+        function myMap() {
+            var myCenter = new google.maps.LatLng(24.601187,90.396813);
+            var mapProp = { center: myCenter, zoom: 15, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var marker = new google.maps.Marker({ position: myCenter });
+            marker.setMap(map);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcUps7dxEuExecibRpr-zZNDmrHC-nNQA&callback=myMap"></script>

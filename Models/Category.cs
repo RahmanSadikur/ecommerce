@@ -13,6 +13,7 @@ namespace NMS.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int categoryId { get; set; }
+        [Required]
         public string categoryName { get; set; }
         public ICollection<SubCategory> SubCategories { get; set; }
 

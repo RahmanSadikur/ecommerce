@@ -177,3 +177,4 @@ C:\Users\USER\source\repos\NMS\bin\Microsoft.Extensions.Caching.SqlServer.xml
 C:\Users\USER\source\repos\NMS\obj\Debug\NMS.Migrations.first.resources
 C:\Users\USER\source\repos\NMS\obj\Debug\NMS.csproj.GenerateResource.cache
 C:\Users\USER\source\repos\NMS\obj\Debug\NMS.Migrations.indentity.resources
+C:\Users\USER\source\repos\NMS\obj\Debug\NMS.Migrations.removefavtable.resources

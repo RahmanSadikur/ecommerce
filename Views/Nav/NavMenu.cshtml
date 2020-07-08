@@ -1,5 +1,8 @@
 ﻿@model NMS.Models.ViewModel.CategoryViewModel
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 
 <style>
     .dropbtn {
@@ -43,70 +46,205 @@
     .dropdown:hover .dropbtn {
         background-color: #3e8e41;
     }
+
+    .dflex {
+        display: block;
+        position: fixed;
+        background-color: rgb(56, 56, 56);
+        min-width: 17%;
+        max-width: 17%;
+        min-height: 100%;
+        z-index: 1;
+    }
 </style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-sm-2">
+            <div class="dflex pt-md-5">
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container">
+                <div class="d-flex flex-column ">
 
-
-        <div class="collapse navbar-collapse "></div>
-
-        <div class="collapse navbar-collapse"
-             id="navbarSupportedContent">
-            <div class="subnav">
-
-                <div class="topnav" id="myTopnav">
-                    @if (Model.Categories.Count() > 0)
-                    {
-                        foreach (var categories in Model.Categories)
+                    <a href="#"><div class="p-2 pl-4  bg-primary" style="min-width: 100%">Flex item 1</div></a>
+                    <a href="#"><div class="p-2 pl-4  bg-info" style="min-width:100%">Flex item 1</div></a>
+                    <div class="p-2 pl-4  bg-primary" style="min-width:100%">
+                        @using (Html.BeginForm())
                         {
-                            <div class="dropdown  mr-auto mt-3 pt-3">
-                                <button class="dropbtn">
-                                    @categories.categoryName
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                <div class="dropdown-content">
+                            @Html.AntiForgeryToken()
 
-                                    @{ var subcat = Model.SubCategories.Where(sc => sc.categoryId == categories.categoryId).ToList(); }
+                            <div class="form-horizontal" style="padding-right:15px;">
 
-                                    @if (subcat.Count() > 0)
+                                <div class="form-group">
+
+                                    <div class="col-md-12">
+                                        <input type="text" id="src">
+
+                                        @*@Html.EditorFor(model => model.products.productName, new { htmlAttributes = new { @class = "form-control", @id = "productName" } })*@
+                                    </div>
+                                    <div id="srl" style="max-width:10%"></div>
+                                </div>
+
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col col-sm-10">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                <div class="container">
+
+
+                    <div class="collapse navbar-collapse "></div>
+
+                    <div class="collapse navbar-collapse"
+                         id="navbarSupportedContent">
+
+                        <div class="subnav">
+
+                            <div class="topnav" id="myTopnav">
+
+
+
+
+
+                                @if (Model.Categories.Count() > 0)
+                                {
+                                    foreach (var categories in Model.Categories)
                                     {
-                                        foreach (var subcategory in subcat)
-                                        {
-                                            @Html.ActionLink(subcategory.subCategoryName, "GetProduct", new { Controller = "Guest", id = subcategory.subCategoryId }, new { @class = "nav-link" })
-                                        }
+                                        <div class="dropdown  mr-auto mt-3 pt-3">
+                                            <button class="dropbtn">
+                                                @categories.categoryName
+                                                <i class="fa fa-caret-down"></i>
+                                            </button>
+                                            <div class="dropdown-content">
+
+                                                @{ var subcat = Model.SubCategories.Where(sc => sc.categoryId == categories.categoryId).ToList(); }
+
+                                                @if (subcat.Count() > 0)
+                                                {
+                                                    foreach (var subcategory in subcat)
+                                                    {
+                                                        @Html.ActionLink(subcategory.subCategoryName, "GetProduct", new { Controller = "Guest", id = subcategory.subCategoryId }, new { @class = "nav-link" })
+                                                    }
+
+                                                }
+
+
+
+
+
+                                            </div>
+
+
+                                        </div>
 
                                     }
 
 
 
-
-
-                                </div>
-
-
+                                }
                             </div>
-
-                        }
-
-                       
-
-                    }
+                        </div>
+                    </div>
                 </div>
-                </div>
-            </div>
+
+            </nav>
         </div>
-    </nav>
+    </div>
+</div>
 
-                <script>
-                    function myFunction() {
-                        var x = document.getElementById("myTopnav");
-                        if (x.className === "topnav") {
-                            x.className += " responsive";
-                        } else {
-                            x.className = "topnav";
-                        }
+
+
+
+
+<script type="text/javascript">
+    $('#src').keyup(function (request, response) {
+        var srcstring = $("#src").val();
+
+
+        var product = new Array();
+        $.ajax({
+            async: false,
+            cache: false,
+            type: "POST",
+
+            data: JSON.stringify({ "term": srcstring }),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "@(Url.Action("Autocomplete", "Nav"))",
+
+
+
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                  
+                    $('#srl').append("<a href='/Nav/GetDetail/"+data[i].productId+"'> "+data[i].productName+"</a><br/>");
+                  
+                  
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError)
+            }
+
+        });
+
+
+    });
+   
+
+    $('#src').ajaxComplete( {
+         
+        source: function (request, response) {
+           
+            var product = new Array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("Autocomplete", "Nav"))",
+                data: { "term": request.term },
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        product[i] = { label: data[i].productName, Id: data[i].productId }
+                        
+                        
                     }
-                </script>
+                }
+            });
+            response(product);
+        },
+         select: function (event, ui) {
+             //fill selected customer details on form
+             $.ajax({
+                 cache: false,
+                 async: false,
+                 type: "POST",
+                 url: "@(Url.Action("GetDetail", " Nav"))",
+                data: { "id": ui.item.Id },
 
+                 success: function (data) {
+                     $("#srl").append(data.productName)
+                  
 
+                    action = data.Action;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve states.');
+                }
+            });
+        }
+    });
+     function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script> 

@@ -1,8 +1,15 @@
 ﻿@model  IEnumerable<NMS.Models.Company>
 
+
+
+
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
         <ul class="nav navbar-nav ml">
+            
             @if (Model.Count() > 0)
             {
                 <li class="nav-item">
@@ -12,7 +19,7 @@
                             @Html.ActionLink(@Model.FirstOrDefault().companyName, "About", new { Controller = "Company", id = @Model.FirstOrDefault().companyID }, new { @class = "nav-link" })
                         </h5>
                     </shadow>
-                   
+
 
                 </li>
                 <li class="nav-link">
@@ -35,6 +42,7 @@
     <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-mr-2 ">
         <ul class="nav navbar-nav ml-auto">
 
+      
             <li class="nav-item">
                 @*<a class="nav-link" href="#">Register</a>*@
                 @Html.ActionLink("Register", "Index", new { Controller = "Register" }, new { @class = "nav-link" })
@@ -46,3 +54,11 @@
         </ul>
     </div>
 </nav>
+
+
+
+
+
+
+
+

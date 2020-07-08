@@ -13,7 +13,9 @@ namespace NMS.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int subCategoryId { get; set; }
+        [Required]
         public string subCategoryName { get; set; }
+        [Required]
         public int categoryId { get; set; }
         [ForeignKey("categoryId")]
         public Category Categorys { get; set; }

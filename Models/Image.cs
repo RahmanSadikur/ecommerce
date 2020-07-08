@@ -13,7 +13,10 @@ namespace NMS.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int imageId { get; set; }
+        [Required]
         public byte[] Productimage { get; set; }
+        public bool isPinned { get; set; }
+        [Required]
         public int productId { get; set; }
         [ForeignKey("productId")]
         public Product Products { get; set; }

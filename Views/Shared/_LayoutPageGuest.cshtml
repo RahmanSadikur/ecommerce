@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -17,22 +18,43 @@
     <div>
         @Html.Action("Index", "Company")
     </div>
+
+
     <div>
         @Html.Action("NavMenu", "Nav")
     </div>
+
     <div class="container-fluid">
+
+
         <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year -Semicolon</p>
-            </footer>
+            <div class="row">
+                <div class="col col-sm-2"></div>
+                <div class="col col-sm-10">
+                    @RenderBody()
+                    <hr />
+                </div>
+            </div>
+           
         </div>
 
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+
     </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-sm-2"></div>
+            <div class="col col-sm-10">
+                <footer>
+                    @Html.Action("Footer", "Nav")
+                </footer>
+            </div>
+        </div>
+    </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
+

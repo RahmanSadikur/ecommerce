@@ -5,12 +5,10 @@ using System.Web;
 
 namespace NMS.Models.ViewModel
 {
-    public class CategoryViewModel
+    public class ProductImageViewModel
     {
-        public List<Category> Categories { get; set; }
-        public List<SubCategory> SubCategories { get; set; }
-        public List<Product> Products { get; set; }
         public List<Image> Images { get; set; }
+       
         public Product products { get; set; }
     }
 }

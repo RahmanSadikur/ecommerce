@@ -13,6 +13,7 @@ namespace NMS.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int userTypeId { get; set; }
+        [Required]
         public string userTypeName { get; set; }
         public ICollection<User> Users { get; set; }
 
