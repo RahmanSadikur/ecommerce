@@ -47,7 +47,7 @@ namespace NMS.Controllers
         {
             var context = new _Context();
             var product = context.Products.Where(p => p.productId == id).FirstOrDefault();
-            var productimg = new ProductImageViewModel();
+            var productimg = new ProductImageNavViewModel();
             if (product != null)
             {
                 var image = context.Images.Where(im => im.productId == product.productId).ToList();

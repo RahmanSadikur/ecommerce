@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NMS.Models.ViewModel;
 
 namespace NMS.Controllers
 {
@@ -20,7 +21,11 @@ namespace NMS.Controllers
         {
 
             var allItem = Context.Products.ToList();
-            return View(allItem);
+            var img = Context.Images.ToList();
+            ProductImageViewModel productImage = new ProductImageViewModel();
+            productImage.products = allItem;
+            productImage.Images = img;
+            return View(productImage);
         }
         [Route("Getsubcat/{id}")]
         public ActionResult GetProduct(int id)

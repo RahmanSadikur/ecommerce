@@ -1,0 +1,38 @@
+﻿@model NMS.Models.ViewModel.CategoryViewModel
+@{
+    ViewBag.Title = "SubCategoryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div class="container-fluid p-5">
+        <h2>SubCategoryList</h2>
+        <div class="row">
+            <div class="col col-sm-3"> @Html.ActionLink("New", "EditSubCategory", new { Controller = "Owner", id = -1 }, new { @class = "btn btn-success" })</div>
+        </div>
+        <div class="row">
+            <table class="table-striped w-100 pt-5">
+                <tr class="thead-light">
+                    <th>Sub Category Name</th>
+                    <th>Parent Category Name</th>
+                    <th>Edit</th>
+
+                </tr>
+                @foreach (var sub in @Model.SubCategories)
+                {
+                    <tr>
+                        <td>
+                            @sub.subCategoryName
+                        </td>
+                        <td>
+                            @Model.Categories.FirstOrDefault(m => m.categoryId == sub.categoryId).categoryName
+                        </td>
+                        <td>
+                            @Html.ActionLink("EDIT", "EditSubCategory", new { Controller = "Owner", id = sub.subCategoryId }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>

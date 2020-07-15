@@ -5,10 +5,10 @@ using System.Web;
 
 namespace NMS.Models.ViewModel
 {
-    public class ProductImageViewModel
+    public class ProductImageNavViewModel
     {
         public List<Image> Images { get; set; }
        
-        public List<Product> products { get; set; }
+        public Product products { get; set; }
     }
 }

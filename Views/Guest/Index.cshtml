@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NMS.Models.Product>
+﻿@model NMS.Models.ViewModel.ProductImageViewModel
 @{
     ViewBag.Title = "ProductList";
     Layout = "~/Views/Shared/_LayoutPageGuest.cshtml";
@@ -6,38 +6,44 @@
 
 <h2>Product List</h2>
 <div class="container-fluid">
-    @if (Model.Count() > 0)
+    @if (Model.products.Count()>0)
     {
-    <div class="row">
+        <div class="row">
 
 
 
 
-        @foreach (var product in Model)
-        {
-            <div class="col col-sm-3">
-                <div class="card">
-                    <div class="card-img-top">@product.Images</div>
-                    <div class="card-header bg-primary "><h1>@product.productName</h1></div>
-                    <div class="card-body">
-
-                        <div class="align-content-center bg-success">
-                            Status:@product.productStatus
+            @for (int i=0;i< Model.products.Count();i++)
+            {
+                <div class="col col-sm-3">
+                    <div class="card"  style="max-height:30%;max-width:100%;min-height:30%;min-width:100%">
+                        @if(Model.Images.FirstOrDefault(it => it.productId == Model.products[i].productId) != null)
+                        {
+                        <div class="card-img-top">
+                        <img alt="@Model.Images.FirstOrDefault(it=>it.productId==Model.products[i].productId).ImageTitle" src="data:image/jpg;base64,@Convert.ToBase64String(Model.Images.FirstOrDefault(it=>it.productId==Model.products[i].productId).ImageData)" style="max-height:20%;max-width:100%" />
                         </div>
+                        }
+
+                        <div class="card-header bg-primary "><h1>@Model.products[i].productName</h1></div>
+                        <div class="card-body">
+
+                            <div class="align-content-center bg-success">
+                                Status:@Model.products[i].productStatus
+                            </div>
+
+                        </div>
+                        <div class="card-footer bg-warning btn">@Html.ActionLink(Model.products[i].productName, "ProductDetails", new { Controller = "Guest", id = Model.products[i].productId })</div>
 
                     </div>
-                    <div class="card-footer bg-warning btn">@Html.ActionLink(product.productName, "ProductDetails", new { Controller = "Guest", id = product.productId })</div>
 
                 </div>
+                <br />
+                <br />
 
-            </div>
-            <br />
-            <br />
-            
 
-        }
+            }
 
-    </div>
+        </div>
     }
 </div>
 

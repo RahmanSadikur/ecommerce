@@ -265,6 +265,14 @@
     <Compile Include="Migrations\202007041801101_removefavtable.designer.cs">
       <DependentUpon>202007041801101_removefavtable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007090836273_password-fixed.cs" />
+    <Compile Include="Migrations\202007090836273_password-fixed.designer.cs">
+      <DependentUpon>202007090836273_password-fixed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007100817044_img.cs" />
+    <Compile Include="Migrations\202007100817044_img.designer.cs">
+      <DependentUpon>202007100817044_img.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
@@ -275,7 +283,10 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserCredential.cs" />
     <Compile Include="Models\ViewModel\CategoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\ImageProduct.cs" />
+    <Compile Include="Models\ViewModel\ProductImageNavViewModel .cs" />
     <Compile Include="Models\ViewModel\ProductImageViewModel.cs" />
+    <Compile Include="Models\ViewModel\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +294,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\style1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -294,10 +306,21 @@
     <Content Include="Views\Company\About.cshtml" />
     <Content Include="Views\Nav\NavMenu.cshtml" />
     <Content Include="Views\Guest\GetProduct.cshtml" />
-    <Content Include="Views\Guest\Index.cshtml" />
     <Content Include="Views\Nav\Footer.cshtml" />
     <Content Include="Views\Nav\MenuSideBar.cshtml" />
     <Content Include="Views\Nav\GetDetail.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Owner\Index.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Guest\Index.cshtml" />
+    <Content Include="Views\Owner\CategoryList.cshtml" />
+    <Content Include="Views\Owner\SubCategoryList.cshtml" />
+    <Content Include="Views\Owner\ProductList.cshtml" />
+    <Content Include="Views\Owner\UserList.cshtml" />
+    <Content Include="Views\Owner\CustomerList.cshtml" />
+    <Content Include="Views\Owner\UserCredentialList.cshtml" />
+    <Content Include="Views\Owner\EditUserCredential.cshtml" />
+    <Content Include="Views\Owner\EditSubCategory.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -351,9 +374,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Customer\" />
-    <Folder Include="Views\Login\" />
-    <Folder Include="Views\Owner\" />
-    <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -377,6 +397,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007041801101_removefavtable.resx">
       <DependentUpon>202007041801101_removefavtable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007090836273_password-fixed.resx">
+      <DependentUpon>202007090836273_password-fixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007100817044_img.resx">
+      <DependentUpon>202007100817044_img.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

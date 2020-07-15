@@ -6,46 +6,98 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+         .dflex {
+        display: block;
+        position: fixed;
+        background-color: rgb(56, 56, 56);
+        min-width: 17%;
+        max-width: 17%;
+        min-height: 100%;
+        z-index: 1;
+    }
+           .dflexrow {
+        display: block;
+        position: fixed;
+        background-color: rgb(56, 56, 56);
+        min-width: 100%;
+       
+       
+      
+    }
+    </style>
+  
 
 </head>
 <body>
+    <div class="dflexrow">
+        <div class="d-flex justify-content-end">
 
 
 
+            <div class="p-2"><input type="text" name="src" id="src" placeholder="Search Product Here" class="form-control" /></div>
+            @if (Int32.TryParse(Convert.ToString(@Session["userId"]), out int result))
+            {
+
+                <a class="nav-link" href="@Url.Action("Profile","Owner",new { id=result})">
+                    <div class="p-1 btn btn-outline-success">
+                        @Session["userName"].ToString()
+
+                    </div>
+                </a>
+            }
 
 
-    <div>
-        @Html.Action("Index", "Company")
+            <a class="nav-link" href="@Url.Action("Logout","Login")"><div class="p-1  btn btn-danger">Log Out</div></a>
+        </div>
     </div>
-
-
-    <div>
-        @Html.Action("NavMenu", "Nav")
-    </div>
-
     <div class="container-fluid">
+        <div class="row  mt-5">
+            <div class="col col-sm-2">
+                <div class="dflex">
+                    <div class="d-flex flex-column">
+                        <a href="@Url.Action("Company","Owner")"><div class=" mt-4  btn btn-info w-100">About</div></a>
+                        <a href="@Url.Action("Index","Owner")"> <div class="mt-2 btn btn-info w-100">Home</div></a>
+                        <a href="@Url.Action("CategoryList","Owner")"><div class="mt-2 btn btn-info w-100">Category List</div></a>
+                        <a href="@Url.Action("SubCategoryList","Owner")"><div class="mt-2 btn btn-info w-100">SubCategory List</div></a>
+                        <a href="@Url.Action("ProductList","Owner")"><div class="mt-2 btn btn-info w-100">Product List</div></a>
+                        <a href="@Url.Action("UserCredentialList","Owner")"><div class="mt-2 btn btn-info w-100">User Credential List</div></a>
+                        <a href="@Url.Action("UserList","Owner")"><div class="mt-2 btn btn-info w-100">User List</div></a>
+                        <a href="@Url.Action("CustomerList","Owner")"><div class="mt-2 btn btn-info w-100">Customer List</div></a>
 
 
-        <div class="container body-content">
-            <div class="row">
-                <div class="col col-sm-2"></div>
+                    </div>
+                </div>
+                </div>
                 <div class="col col-sm-10">
-                    @RenderBody()
-                    <hr />
+                    <div class="d-flex justify-content-center">
+                    <div class="row" id="srl">
+
+                    </div>
+                    </div>
+                    <div class="mt-3"> @RenderBody()</div>
+                   
                 </div>
             </div>
-
         </div>
+   
+    
+
+    
 
 
 
-    </div>
-    <footer>
-        @Html.Action("Footer", "Nav")
-    </footer>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
 
+
+
+   
+
+    
+
+  

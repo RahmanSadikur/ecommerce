@@ -25,8 +25,31 @@ namespace NMS.Controllers
         [HttpPost]
         public ActionResult adduser( User user)
         {
-
-            return View();
+            try
+            {
+                var users = _context.Users.FirstOrDefault(u => u.userName == user.userName || u.userId == user.userId);
+                if (users == null)
+                {
+                    users = new User();
+                    _context.Users.Add(users);
+                }
+                users.userName = user.userName;
+                users.password = user.password;
+                users.phone = user.phone;
+                users.email = user.email;
+                users.address = user.address;
+                users.description = "Customer";
+                users.designation = "none";
+                users.userTypeId = 3;
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Login");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return RedirectToAction("Index", "Register");
+            }
+          
         }
 
     }

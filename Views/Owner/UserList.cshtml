@@ -1,0 +1,60 @@
+﻿@model NMS.Models.ViewModel.UserViewModel
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="container-fluid p-5">
+    <h2>UserList</h2>
+    <div class="row">
+        <div class="col col-sm-3"> @Html.ActionLink("ADD New User", "EditUser", new { Controller = "Owner", id = -1 }, new { @class = "btn btn-success" })</div>
+    </div>
+    <div class="row">
+        <table class="table-striped w-100 pt-5">
+            <tr class="thead-light w-100">
+                <th>User Name </th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Description</th>
+                <th>Address</th>
+                <th>Designation</th>
+
+               
+                <th>Edit</th>
+
+            </tr>
+            @foreach (var user in @Model.Users)
+            {
+                <tr>
+                    <td>
+                        @user.userName
+                    </td>
+                    <td>
+                        @user.email
+                    </td>
+                    <td>
+                        @user.phone
+                    </td>
+                    
+                    <td>
+                        @user.description
+                    </td>
+                    <td>
+                        @user.address
+                    </td>
+                    <td>
+                        @Model.UserCredentials.FirstOrDefault(m => m.userTypeId == user.userTypeId).userTypeName
+                    </td>
+
+                    
+                    <td>
+                        @Html.ActionLink("EDIT", "EditUser", new { Controller = "Owner", id =user.userId}, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

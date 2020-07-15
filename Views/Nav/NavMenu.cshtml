@@ -13,6 +13,14 @@
         font-size: 16px;
         border: none;
     }
+    .r {
+        background-color: rgba(0,0,0,0.2);
+        min-width: 200px;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: solid;
+    }
 
     .dropdown {
         position: relative;
@@ -46,6 +54,9 @@
     .dropdown:hover .dropbtn {
         background-color: #3e8e41;
     }
+    #srcrslt{
+        min-width:100%;
+    }
 
     .dflex {
         display: block;
@@ -64,8 +75,8 @@
 
                 <div class="d-flex flex-column ">
 
-                    <a href="#"><div class="p-2 pl-4  bg-primary" style="min-width: 100%">Flex item 1</div></a>
-                    <a href="#"><div class="p-2 pl-4  bg-info" style="min-width:100%">Flex item 1</div></a>
+                    <a href="#"><div class="p-2 pl-4 btn btn-primary" style="min-width: 100%">Flex item 1</div></a>
+                    <a href="#"><div class="p-2 pl-4 btn btn-info" style="min-width:100%">Flex item 1</div></a>
                     <div class="p-2 pl-4  bg-primary" style="min-width:100%">
                         @using (Html.BeginForm())
                         {
@@ -76,11 +87,11 @@
                                 <div class="form-group">
 
                                     <div class="col-md-12">
-                                        <input type="text" id="src">
+                                        <input type="text" id="src" class="form-control">
 
-                                        @*@Html.EditorFor(model => model.products.productName, new { htmlAttributes = new { @class = "form-control", @id = "productName" } })*@
+                                      
                                     </div>
-                                    <div id="srl" style="max-width:10%"></div>
+                                    <div id="srl" style="max-width:10%" class="row"></div>
                                 </div>
 
                             </div>
@@ -97,7 +108,7 @@
                 <div class="container">
 
 
-                    <div class="collapse navbar-collapse "></div>
+                    <div class="collapse navbar-collapse " ></div>
 
                     <div class="collapse navbar-collapse"
                          id="navbarSupportedContent">
@@ -161,10 +172,13 @@
 
 
 <script type="text/javascript">
+    $('#src').keydown(function () {
+         $("#srl").html("<div class='r'></div>")
+    });
     $('#src').keyup(function (request, response) {
         var srcstring = $("#src").val();
 
-
+        
         var product = new Array();
         $.ajax({
             async: false,
@@ -180,16 +194,21 @@
 
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                  
-                    $('#srl').append("<a href='/Nav/GetDetail/"+data[i].productId+"'> "+data[i].productName+"</a><br/>");
+                    
+
+                    $('#srl').append("<a href='/Nav/GetDetail/" + data[i].productId + "'><div class='r'> " + data[i].productName + "</div></a><br/>");
                   
                   
 
                 }
+                if ($("#src").val()== "") {
+            $("#srl").html("<div class='r'>search somethimg here</div>")
+        }
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError)
             }
+
 
         });
 
@@ -197,48 +216,8 @@
     });
    
 
-    $('#src').ajaxComplete( {
-         
-        source: function (request, response) {
-           
-            var product = new Array();
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "POST",
-                url: "@(Url.Action("Autocomplete", "Nav"))",
-                data: { "term": request.term },
-                success: function (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        product[i] = { label: data[i].productName, Id: data[i].productId }
-                        
-                        
-                    }
-                }
-            });
-            response(product);
-        },
-         select: function (event, ui) {
-             //fill selected customer details on form
-             $.ajax({
-                 cache: false,
-                 async: false,
-                 type: "POST",
-                 url: "@(Url.Action("GetDetail", " Nav"))",
-                data: { "id": ui.item.Id },
 
-                 success: function (data) {
-                     $("#srl").append(data.productName)
-                  
-
-                    action = data.Action;
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert('Failed to retrieve states.');
-                }
-            });
-        }
-    });
+    
      function myFunction() {
         var x = document.getElementById("myTopnav");
         if (x.className === "topnav") {

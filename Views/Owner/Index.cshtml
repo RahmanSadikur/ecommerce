@@ -1,0 +1,30 @@
+﻿@model NMS.Models.ViewModel.ImageProduct
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+};
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-sm-2"></div>
+        <div class="col col-sm-8">
+
+            @using (Html.BeginForm("UploadImage", "Owner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <div>
+                @Html.DropDownListFor(M => M.Images.productId, new SelectList(Model.products,"productId","productName"),new { @class="form-control"})
+                @Html.LabelFor(x => x.File,new { @class="form-control"})
+                @Html.TextBoxFor(x => x.File, new { type = "file",@class="form-control" })
+                @Html.ValidationMessageFor(x => x.File)
+
+            </div>
+
+                <button type="submit">Upload</button>
+            }
+
+
+        </div>
+        <div class="col col-sm-2"></div>
+    </div>
+</div>
+
+

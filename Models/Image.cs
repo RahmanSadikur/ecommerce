@@ -14,7 +14,9 @@ namespace NMS.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int imageId { get; set; }
         [Required]
-        public byte[] Productimage { get; set; }
+        public string ImageTitle { get; set; }
+        [Required]
+        public byte[] ImageData { get; set; }
         public bool isPinned { get; set; }
         [Required]
         public int productId { get; set; }

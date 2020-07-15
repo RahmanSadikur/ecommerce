@@ -1,0 +1,30 @@
+﻿@model NMS.Models.ViewModel.CategoryViewModel
+
+@{
+    ViewBag.Title = "EditSubCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div class="container-fluid mt-5 p-5">
+        <h2>EditSubCategory</h2>
+        @using (Html.BeginForm("EditSubCategory", "Owner", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(m => m.subCategory.subCategoryId)
+                @Html.TextBoxFor(m => m.subCategory.subCategoryId, new { @class = "form-control", @readonly = true })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.subCategory.subCategoryName)
+                @Html.TextBoxFor(m => m.subCategory.subCategoryName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.subCategory.subCategoryName)
+            </div>
+            <div>
+                @Html.DropDownListFor(m => m.subCategory.categoryId, new SelectList(Model.Categories, "categoryId", "categoryName"), new { @class = "form-control" })
+            </div>
+            <div>
+                <input type="submit" value="Save" class="form-control" />
+            </div>
+        }
+    </div>

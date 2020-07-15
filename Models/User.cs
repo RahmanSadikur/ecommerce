@@ -12,8 +12,7 @@ namespace NMS.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int userId { get; set; }
-        [Required]
-        public string userName { get; set; }
+        
 
         public string email { get; set; }
         [Required]
@@ -23,6 +22,13 @@ namespace NMS.Models
         [Required]
         public string designation { get; set; }
         public string description { get; set; }
+        [Required]
+        
+        public string userName { get; set; }
+        [Required]
+        [MinLength(8)]
+       
+        public string password { get; set; }
         [Required]
         public int userTypeId { get; set; }
         
