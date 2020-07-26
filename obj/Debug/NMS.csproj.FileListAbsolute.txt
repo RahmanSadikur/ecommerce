@@ -180,3 +180,4 @@ C:\Users\USER\source\repos\NMS\obj\Debug\NMS.Migrations.indentity.resources
 C:\Users\USER\source\repos\NMS\obj\Debug\NMS.Migrations.removefavtable.resources
 C:\Users\USER\source\repos\NMS\obj\Debug\NMS.Migrations.passwordfixed.resources
 C:\Users\USER\source\repos\NMS\obj\Debug\NMS.Migrations.img.resources
+C:\Users\USER\source\repos\NMS\obj\Debug\NMS.Migrations.addfav.resources

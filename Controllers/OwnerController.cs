@@ -57,8 +57,43 @@ namespace NMS.Controllers
         [Route("Owner/EditCategory/{id}")]
         public ActionResult EditCategory(int id)
         {
+            var category = contex.Categories.FirstOrDefault(m => m.categoryId == id);
+            if(category==null)
+            {
+                category = new Category();
+            }
 
-            return View();
+            return View("EditCategory",category);
+        }
+        [Route("Owner/EditCategory/{category}")]
+        [HttpPost]
+        public ActionResult EditCategory(Category Category)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var category = contex.Categories.FirstOrDefault(m => m.categoryId == Category.categoryId);
+                    if (category == null)
+                    {
+                        category = new Category();
+                        contex.Categories.Add(category);
+                        
+                    }
+                    category.categoryName = Category.categoryName;
+                    contex.SaveChanges();
+                    return RedirectToAction("CategoryList", "Owner");
+                }
+
+                return RedirectToAction("EditCategory", "Owner");
+
+
+            }
+            catch(Exception e)
+            {
+                return Content(e.Message);
+            }
+            
         }
         [Route("Owner/EditSubCategory/{id}")]
         public ActionResult EditSubCategory(int id)
@@ -76,23 +111,23 @@ namespace NMS.Controllers
             return View("EditSubCategory", categoryViewMOdel);
         }
         
-        [Route("Owner/EditSubCategory/{categoryViewModel}")]
+        [Route("Owner/EditSubCategory/{subCategory}")]
         [HttpPost]
-        public ActionResult EditSubCategory(CategoryViewModel categoryViewModel)
+        public ActionResult EditSubCategory(SubCategory subCategory)
         {
 
             try {
                 if (ModelState.IsValid)
                 {
-                    var subcategory = contex.SubCategories.FirstOrDefault(m => m.subCategoryId == categoryViewModel.subCategory.subCategoryId);
+                    var subcategory = contex.SubCategories.FirstOrDefault(m => m.subCategoryId ==subCategory.subCategoryId);
 
                     if (subcategory == null)
                     {
                         subcategory = new SubCategory();
                         contex.SubCategories.Add(subcategory);
                     }
-                    subcategory.subCategoryName = categoryViewModel.subCategory.subCategoryName;
-                    subcategory.categoryId = categoryViewModel.subCategory.categoryId;
+                    subcategory.subCategoryName =subCategory.subCategoryName;
+                    subcategory.categoryId = subCategory.categoryId;
                     contex.SaveChanges();
 
 
@@ -102,7 +137,8 @@ namespace NMS.Controllers
 
                     return RedirectToAction("SubCategoryList", "Owner");
                 }
-                return View("EditSubCategory", categoryViewModel);
+                return RedirectToAction("EditSubCategory", "Owner");
+                
             }
             catch(Exception e)
             {
@@ -117,8 +153,63 @@ namespace NMS.Controllers
         [Route("Owner/EditProduct/{id}")]
         public ActionResult EditProduct(int id)
         {
+            var categoryViewMOdel = new CategoryViewModel();
+            var product = contex.Products.FirstOrDefault(m => m.productId == id);
+            var subCategory = contex.SubCategories.ToList();
+            
+            if (product == null)
+            {
+                product = new Product();
+            }
+            categoryViewMOdel.SubCategories = subCategory;
+            categoryViewMOdel.product = product;
 
-            return View();
+            return View("EditProduct", categoryViewMOdel);
+
+           
+        }
+        [Route("Owner/EditProduct/{product}")]
+        [HttpPost]
+        public ActionResult EditProduct(Product product)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var products = contex.Products.FirstOrDefault(m => m.productId == product.productId);
+
+                    if (products == null)
+                    {
+                        products = new Product();
+                        contex.Products.Add(products);
+                    }
+                    products.productName = product.productName;
+                    products.productDescription = product.productDescription;
+                    products.productPrice = product.productPrice;
+                    products.productStatus = product.productStatus;
+                    products.isPinnedProduct = product.isPinnedProduct;
+                    products.contact = product.contact;
+                    products.color = product.color;
+                  
+                    products.subCategoryId = product.subCategoryId;
+                    contex.SaveChanges();
+
+
+
+
+
+
+                    return RedirectToAction("ProductList", "Owner");
+                }
+                return RedirectToAction("EditProduct", "Owner");
+
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
+
+
         }
         [Route("Owner/SubCategoryList")]
         public ActionResult SubCategoryList()

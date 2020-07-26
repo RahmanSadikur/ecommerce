@@ -1,0 +1,62 @@
+﻿@model NMS.Models.ViewModel.CategoryViewModel
+
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div class="container-fluid mt-5 p-5">
+        <h2>Edit Product</h2>
+        @using (Html.BeginForm("EditProduct", "Owner", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(m => m.product.productId)
+                @Html.TextBoxFor(m => m.product.productId, new { @class = "form-control", @readonly = true })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.product.productName)
+                @Html.TextBoxFor(m => m.product.productName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.product.productName)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.product.productDescription)
+                @Html.TextAreaFor(m => m.product.productDescription, new { @class = "form-control" })
+               
+            </div>
+            <div>
+                @Html.LabelFor(m => m.product.color)
+                @Html.TextBoxFor(m =>  m.product.color, new { @class = "form-control" })
+               
+            </div>
+            <div>
+                @Html.LabelFor(m => m.product.productPrice)
+                @Html.TextBoxFor(m => m.product.productPrice, new { @class = "form-control" })
+               
+            </div>
+            <div>
+                @Html.LabelFor(m => m.product.productStatus)
+                @Html.TextBoxFor(m => m.product.productStatus, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.product.productStatus)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.product.contact)
+                @Html.TextBoxFor(m => m.product.contact, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.product.contact)
+            </div>
+            <div>
+               Pin:
+                @Html.RadioButtonFor(m => m.product.isPinnedProduct, true, new { @class = "form-control" }) 
+                Un Pin:
+                @Html.RadioButtonFor(m => m.product.isPinnedProduct, false, new { @class = "form-control" })
+            </div>
+            <div>
+                @Html.DropDownListFor(m => m.product.subCategoryId, new SelectList(Model.SubCategories, "subCategoryId", "subCategoryName"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m =>m.product.subCategoryId)
+            </div>
+            <div>
+                <input type="submit" value="Save" class="form-control" />
+            </div>
+        }
+    </div>

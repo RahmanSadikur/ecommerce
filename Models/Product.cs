@@ -25,7 +25,7 @@ namespace NMS.Models
         [Required]
         public int subCategoryId { get; set; }
         public bool isPinnedProduct { get; set; }
-        public bool isFavourite { get; set; }
+    
         public string color{ get; set; }
         [ForeignKey("subCategoryId")]
         public SubCategory SubCategorys { get; set; }
